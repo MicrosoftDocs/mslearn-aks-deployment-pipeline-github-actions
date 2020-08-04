@@ -85,7 +85,7 @@ DefaultContentLanguage           = "en"                    # Default language fo
         languageCode     = "en-us"
         contentDir       = "content/en"
         weight           = 0
-        title            = "Contoso Video Editing"
+        title            = "Contoso Drones"
         [languages.en.params]
-            description  = "Contoso video editing is an awesome company"   # Max 160 characters show in search results
+            description  = "Contoso has the best drones for all activities"   # Max 160 characters show in search results
             # footerText   = ""                      # Text to override default footer text (markdown allowed)
