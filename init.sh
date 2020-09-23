@@ -19,6 +19,7 @@ az aks create \
 az aks get-credentials -n $AKS_NAME -g $RESOURCE_GROUP_NAME
 
 az acr create -n $ACR_NAME -g $RESOURCE_GROUP_NAME --sku basic
+az acr update -n $ACR_NAME --admin-enabled true
 
 az aks update \
     --name $AKS_NAME \
