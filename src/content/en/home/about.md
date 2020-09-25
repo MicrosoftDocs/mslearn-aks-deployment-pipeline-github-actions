@@ -4,7 +4,7 @@ image: "profile.jpg"
 weight: 8
 ---
 
-We're **Contoso** the awesome drone company!
+We're **Contoso** the awesome video company!
 
 ### Why choose us?
 

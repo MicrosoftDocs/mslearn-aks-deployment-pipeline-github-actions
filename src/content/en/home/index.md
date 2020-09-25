@@ -3,4 +3,4 @@ title: "We are Contoso"
 headless: true
 ---
 
-We're the next level drone making company
+We're the next level video making company
