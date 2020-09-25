@@ -12,7 +12,7 @@ spec:
         app: contoso-website
     spec:
       containers:
-        - image: khaosdoctor/aks-learn-module-contoso-website
+        - image: !IMAGE!
           name: contoso-website
           resources:
             requests:
