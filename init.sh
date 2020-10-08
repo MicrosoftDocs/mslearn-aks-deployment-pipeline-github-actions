@@ -31,9 +31,6 @@ az aks update \
 
 export DNS_NAME=`az aks show -g $RESOURCE_GROUP_NAME -n $AKS_NAME -o tsv --query addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName -o tsv`
 
-sed -i '' 's+!IMAGE!+'"$ACR_NAME"'/contoso-website+g' kubernetes/deployment.yaml
-sed -i '' 's+!DNS!+'"$DNS_NAME"'+g' kubernetes/ingress.yaml
-
 echo "Installation concluded, copy these values and store them, you'll use them later in this exercise:"
 echo "-> Resource Group Name: $RESOURCE_GROUP_NAME"
 echo "-> ACR Name: $ACR_NAME"
