@@ -62,7 +62,12 @@ Outline the file contents of the repository. It helps users navigate the codebas
 
 This sample is built using [Hugo](https://gohugo.io), therefore it is needed as prerequisite to run this example.
 
-## Setup
+## Running Locally
+
+> __Attention__
+> This section only applies if you're cloning the repository and running it in your __local machine__, it does not apply if you're trying to accomplish the [related learn module](https://docs.microsoft.com/en-us/learn/modules/aks-deployment-pipeline-github-actions/).
+>
+> In this case, please follow the module's instructions and run the [startup script](./init.sh)
 
 After cloning the repository, init the theme repository by running `git submodule update --init src/themes/introduction` **in the root directory**.
 
