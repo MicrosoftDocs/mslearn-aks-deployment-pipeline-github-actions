@@ -13,6 +13,7 @@ az aks create \
   --node-count 1 \
   --enable-addons http_application_routing \
   --dns-name-prefix $AKS_NAME \
+  --enable-managed-identity \
   --generate-ssh-keys \
   --node-vm-size Standard_B2s
 
