@@ -28,8 +28,8 @@ az acr create -n $ACR_NAME -g $RESOURCE_GROUP_NAME --sku basic
 az acr update -n $ACR_NAME --admin-enabled true
 
 echo "Attaching ACR to AKS..."
-export ACR_USERNAME=az acr credential show -n $ACR_NAME --query "username" -o tsv
-export ACR_PASSWORD=az acr credential show -n $ACR_NAME --query "passwords[0].value" -o tsv
+export ACR_USERNAME=$(az acr credential show -n $ACR_NAME --query "username" -o tsv)
+export ACR_PASSWORD=$(az acr credential show -n $ACR_NAME --query "passwords[0].value" -o tsv)
 
 az aks update \
     --name $AKS_NAME \
