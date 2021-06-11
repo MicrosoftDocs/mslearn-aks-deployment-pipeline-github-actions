@@ -26,3 +26,4 @@ jobs:
         with:
           context: .
           tags: contoso-website:latest
+          push: true
