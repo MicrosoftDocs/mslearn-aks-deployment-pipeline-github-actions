@@ -24,10 +24,7 @@ jobs:
       - name: Build and push the tagged build to production
         id: gen_tags
         run: |
-          if [[ $GITHUB_REF == 'refs/tags/'* ]]; then
-            TAGS='["user/image:latest","'${GITHUB_REF/refs\/tags\//}'"]'
-          else
-            TAGS='["user/image:latest"]'
+          TAGS='${GITHUB_REF/refs\/tags\//}'
           fi
           echo '::set-output name=tags::'$TAGS
       # Runs a single command using the runners shell
