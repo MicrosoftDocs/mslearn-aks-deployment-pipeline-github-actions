@@ -34,7 +34,7 @@ jobs:
       - name: Create Tag
         id: gen_tags
         run: |
-          echo '::set-output name=tags::${GITHUB_REF/refs\/tags\//}'
+          echo '::set-output name=tags::'"${GITHUB_REF/refs\/tags\//}"
       - name: Build and push Docker images
   # You may pin to the exact commit or the version.
   # uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
