@@ -25,7 +25,6 @@ jobs:
         id: gen_tags
         run: |
           TAGS='${GITHUB_REF/refs\/tags\//}'
-          fi
           echo '::set-output name=tags::'$TAGS
       # Runs a single command using the runners shell
       - name: Docker Login
