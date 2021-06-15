@@ -39,6 +39,6 @@ jobs:
         uses: docker/build-push-action@v2.5.0
         with:
           context: .
-          tags: ${{ secrets.ACR_NAME }}/contoso-website:${{ steps.docker-tag.outputs.tag }}
+          tags: ${GITHUB_REF#refs/tags}
           push: true
           
