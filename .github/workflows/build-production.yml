@@ -40,6 +40,6 @@ jobs:
         uses: docker/build-push-action@v2.5.0
         with:
           context: .
-          tags: ${{ secrets.ACR_NAME }}/contoso-website:${{steps.gen_tags.outputs.tags}}
+          tags: ${{ secrets.ACR_NAME }}/contoso-website:${{ fromJson(steps.gen_tags.outputs.tags) }}
           push: true
           
