@@ -21,11 +21,6 @@ jobs:
       # You may pin to the exact commit or the version.
       # uses: docker/setup-buildx-action@0d135e0c2fc0dba0729c1a47ecfcf5a3c7f8579e
         uses: docker/setup-buildx-action@v1.3.0
-      - name: Build and push the tagged build to production
-        id: gen_tags
-        run: |
-          TAGS=${GITHUB_REF/refs/tags}
-          echo '::set-output name=tags::'$TAGS
       # Runs a single command using the runners shell
       - name: Docker Login
   # You may pin to the exact commit or the version.
@@ -43,6 +38,6 @@ jobs:
         uses: docker/build-push-action@v2.5.0
         with:
           context: .
-          tags: ${{ secrets.ACR_NAME }}/contoso-website:${{ fromJson(steps.gen_tags.outputs.tags) }}
+          tags: ${{ secrets.ACR_NAME }}/contoso-website:${GITHUB_REF/refs/tags}
           push: true
           
