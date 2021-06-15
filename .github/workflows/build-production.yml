@@ -24,7 +24,7 @@ jobs:
       - name: Build and push the tagged build to production
         id: gen_tags
         run: |
-          TAGS=${GITHUB_REF/refs\/tags\//}
+          TAGS=${GITHUB_REF#refs/tags}
           echo '::set-output name=tags::'$TAGS
       # Runs a single command using the runners shell
       - name: Docker Login
