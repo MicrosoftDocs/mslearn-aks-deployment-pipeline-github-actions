@@ -62,11 +62,7 @@ jobs:
             resource-group: mslearn-gh-pipelines-22922
             cluster-name: contoso-video
         
-        - name: Create Tag
-          id: gen_tags
-          run: |
-           echo '::set-output name=tags::'"${GITHUB_REF/refs\/tags\//}"
-        # ... File omitted
+          # ... File omitted
         - name: Run Helm Deploy
           run: |
            helm upgrade \
@@ -79,6 +75,6 @@ jobs:
              ./kubernetes/contoso-website \
              --set image.repository=${{ secrets.ACR_NAME }} \
              --set dns.name=${{ secrets.DNS_NAME }} \
-             --set image.tag=${{ steps.gen_tags.outputs.tags }}
+             --set image.tag=${GITHUB_REF##*/}
 
           
