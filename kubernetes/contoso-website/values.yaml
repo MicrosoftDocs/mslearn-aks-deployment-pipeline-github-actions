@@ -1,7 +1,7 @@
 image:
-  repository: <acr-name>
+  repository: !IMAGE!
   name: contoso-website
   tag: latest
 
 dns:
-  name: <your-dns-zone-name>
+  name: !DNS!
