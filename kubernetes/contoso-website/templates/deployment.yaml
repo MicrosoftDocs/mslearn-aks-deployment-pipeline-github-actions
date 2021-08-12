@@ -6,13 +6,14 @@ spec:
   selector:
     matchLabels:
       app: contoso-website
+      namespace: {{ default "staging" .Release.Namespace }}
   template:
     metadata:
       labels:
         app: contoso-website
     spec:
       containers:
-        - image: !IMAGE!
+        - image: {{ .Values.image.registry }}/{{ .Values.image.name }}:{{ default "latest" .Values.image.tag }}
           name: contoso-website
           resources:
             requests:

@@ -1,0 +1,7 @@
+image:
+  repository: <acr-name>
+  name: contoso-website
+  tag: latest
+
+dns:
+  name: 71477134c1404b868089.japaneast.aksapp.io
