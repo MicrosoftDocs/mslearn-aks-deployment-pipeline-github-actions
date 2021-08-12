@@ -29,5 +29,5 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          tags: ${{secrets.ACR_NAME}}/contoso-website:latest,${{secrets.ACR_NAME}}/contoso-website:${{ env.BRANCH }}
+          tags: ${{secrets.ACR_NAME}}/contoso-website:${{ env.BRANCH }}
           push: true
