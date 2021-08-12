@@ -1,0 +1,23 @@
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build_push_image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build and push staging image
+        uses: docker/build-push-action@v1.1.1
+        with:
+          username: ${{ secrets.ACR_LOGIN }}
+          password: ${{ secrets.ACR_PASSWORD }}
+          registry: ${{ secrets.ACR_NAME }}
+          repository: contoso-website
+          tags: latest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build_push_image # Will wait for the execution of the previous job
