@@ -1,0 +1,36 @@
+name: manage-azure-policy-dd691853
+on:
+  workflow_dispatch:
+    inputs:
+      remarks:
+        description: 'Reason for triggering the workflow run'
+        required: false
+        default: 'Updating Azure Policies'
+
+
+## Uncomment the following if you wish to automatically trigger workflow run with every commit
+#
+#  push:
+#    paths:
+#      - 'Disks Policies/policies/Unattached_disks_should_be_encrypted_2c89a2e5-7285-40fe-afe0-ae8654b92fb2/**'
+#      - 'Disks Policies/policies/Azure_Monitor_should_collect_activity_logs_from_all_regions_41388f1c-2db0-4c25-95b2-35d7f5ccbfa9/**'
+#      - 'Disks Policies/policies/Activity_log_should_be_retained_for_at_least_one_year_b02aacc0-b073-424e-8298-42b22829ee0a/**'
+#      - .github/workflows/manage-azure-policy-dd691853.yml
+jobs:
+  apply-azure-policy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS_dd691853}}
+        allow-no-subscriptions: true
+    - name: Create or Update Azure Policies
+      uses: azure/manage-azure-policy@v0
+      with:
+        paths: |
+          Disks Policies/policies/Unattached_disks_should_be_encrypted_2c89a2e5-7285-40fe-afe0-ae8654b92fb2/**
+          Disks Policies/policies/Azure_Monitor_should_collect_activity_logs_from_all_regions_41388f1c-2db0-4c25-95b2-35d7f5ccbfa9/**
+          Disks Policies/policies/Activity_log_should_be_retained_for_at_least_one_year_b02aacc0-b073-424e-8298-42b22829ee0a/**
