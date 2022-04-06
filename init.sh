@@ -3,7 +3,7 @@
 echo "Defining variables..."
 export RESOURCE_GROUP_NAME=mslearn-gh-pipelines-$RANDOM
 export AKS_NAME=contoso-video
-export ACR_NAME=ContosoContainerRegistry$RANDOM
+export ACR_NAME=contosocontainerregistry$RANDOM
 
 echo "Searching for resource group..."
 az group create -n $RESOURCE_GROUP_NAME -l eastus
