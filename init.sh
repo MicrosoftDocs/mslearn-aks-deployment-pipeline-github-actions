@@ -6,7 +6,7 @@ export AKS_NAME=contoso-video
 export ACR_NAME=ContosoContainerRegistry$RANDOM
 
 echo "Searching for resource group..."
-az group create -n $RESOURCE_GROUP_NAME -l eastus
+az group create -n $RESOURCE_GROUP_NAME -l northeurope
 
 echo "Creating cluster..."
 az aks create \
