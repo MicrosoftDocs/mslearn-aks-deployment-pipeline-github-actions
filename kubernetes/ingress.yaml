@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: contoso-website
@@ -10,6 +10,9 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: contoso-website
-              servicePort: http
+              service:
+                name: contoso-website
+                port:
+                  name: http
             path: /
+            pathType: Prefix
