@@ -4,10 +4,13 @@ on:
   push:
     branches: [ main ]
 
+
 jobs:
   build_push_image:
     runs-on: ubuntu-20.04
-
+on:
+  workflow_dispatch:
+  
     steps:
       - uses: actions/checkout@v2
 
