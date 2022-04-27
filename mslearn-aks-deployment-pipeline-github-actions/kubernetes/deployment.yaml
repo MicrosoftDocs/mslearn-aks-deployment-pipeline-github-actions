@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: contoso-website
+  namespace: {{ default "staging" .Release.Namespace }}
 spec:
   selector:
     matchLabels:
@@ -12,7 +13,7 @@ spec:
         app: contoso-website
     spec:
       containers:
-        - image: !IMAGE!
+        - image: {{ .Values.image.registry }}/{{ .Values.image.name }}:{{ default "latest" .Values.image.tag }}
           name: contoso-website
           resources:
             requests:
