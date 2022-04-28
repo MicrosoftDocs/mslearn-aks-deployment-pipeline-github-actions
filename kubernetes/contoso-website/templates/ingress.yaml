@@ -11,7 +11,9 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: contoso-website
-              servicePort: http
+              service
+              Name: contoso-website
+              Port:
+                name: http
             path: /
             pathType: Prefix
