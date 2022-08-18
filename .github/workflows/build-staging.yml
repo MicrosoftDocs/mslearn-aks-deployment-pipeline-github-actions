@@ -1,0 +1,53 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Build and push the latest build to staging
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+    
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build_push_image:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-20.04
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v1
+    
+      - name: Docker Login
+        # You may pin to the exact commit or the version.
+        # uses: docker/login-action@49ed152c8eca782a232dede0303416e8f356c37b
+        uses: docker/login-action@v2.0.0
+        with:
+          # Server address of Docker registry. If not set then will default to Docker Hub
+          registry: ${{ secrets.ACR_NAME }}
+          # Username used to log against the Docker registry
+          username: ${{ secrets.ACR_LOGIN }}
+          # Password or personal access token used to log against the Docker registry
+          password: ${{ secrets.ACR_PASSWORD }}
+          
+      - name: Build and push staging images
+        # You may pin to the exact commit or the version.
+        # uses: docker/build-push-action@c84f38281176d4c9cdb1626ffafcd6b3911b5d94
+        uses: docker/build-push-action@v3.1.1
+        with:
+            # Build's context is the set of files located in the specified PATH or URL
+            context: .
+            # Push is a shorthand for --output=type=registry
+            push: true
+            # List of tags
+            tags: ${{ secrets.ACR_NAME }}/contoso-website:latest
+            # GitHub Token used to authenticate against a repository for Git context
+            github-token: ${{ github.token }}
+            
