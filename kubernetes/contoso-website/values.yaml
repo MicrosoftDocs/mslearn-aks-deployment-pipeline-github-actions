@@ -1,0 +1,7 @@
+image:
+  registry: contosocontainerregistry4508
+  name: contoso-website
+  tag: latest
+
+dns:
+  name: az aks show -g mslearn-gh-pipelines-15250 -n contosocontainerregistry4508 -o tsv --query addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName
