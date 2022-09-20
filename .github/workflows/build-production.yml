@@ -1,0 +1,34 @@
+name: Build and push the tagged build to production
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build_push_image:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Fetch latest version
+        id: fetch_version
+        run: echo ::set-output name=TAG::${GITHUB_REF#refs/tags/}
+
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Docker Login
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ secrets.ACR_NAME }}
+          username: ${{ secrets.ACR_LOGIN }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - name: Build and push production images
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          tags: ${{secrets.ACR_NAME}}/contoso-website:latest,${{secrets.ACR_NAME}}/contoso-website:${{ steps.fetch_version.outputs.TAG }}
+          push: true
