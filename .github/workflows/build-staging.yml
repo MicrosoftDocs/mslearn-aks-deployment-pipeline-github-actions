@@ -11,7 +11,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  build_push_image:
     # The type of runner that the job will run on
     runs-on: ubuntu-20.04
 
@@ -52,3 +52,26 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+  deploy:
+    runs-on: ubuntu-20.04
+    needs: build_push_image # Will wait for the execution of the previous job
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Helm
+        uses: Azure/setup-helm@v3
+        with:
+          # Version of helm
+          version: v3.3.1
+
+      - name: Azure Kubernetes set context
+        uses: Azure/aks-set-context@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          resource-group: mslearn-gh-pipelines-15416
+          cluster-name: contoso-video  
+
+          
+    
