@@ -48,8 +48,6 @@ jobs:
           
           # Builder instance          
           context: .          
-          # Always attempt to pull all referenced images
-          pull: # optional, default is false 
           # Push is a shorthand for --output=type=registry
           push: true
     
